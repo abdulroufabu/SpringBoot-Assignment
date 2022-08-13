@@ -1,4 +1,4 @@
-package com.test.statement.utils;
+package com.test.statement.contants;
 
 import java.util.regex.Pattern;
 
