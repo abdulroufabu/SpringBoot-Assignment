@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.test.statement.contants.Constant;
 import com.test.statement.exceptions.InvalidParameterException;
 import com.test.statement.exceptions.ResourceNotFoundException;
 import com.test.statement.models.Account;
@@ -22,7 +23,6 @@ import com.test.statement.repositories.AccountRepository;
 import com.test.statement.repositories.StatementRepository;
 import com.test.statement.results.AccountStatement;
 import com.test.statement.results.AccountStatementResult;
-import com.test.statement.utils.Constant;
 import com.test.statement.utils.InputValidator;
 
 @Service
