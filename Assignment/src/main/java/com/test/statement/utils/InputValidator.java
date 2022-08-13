@@ -2,8 +2,6 @@ package com.test.statement.utils;
 
 import java.time.LocalDate;
 
-import com.test.statement.contants.Constant;
-
 public class InputValidator {
 
 
