@@ -38,7 +38,7 @@ public class AccountStatementController {
 	}
 
 	@GetMapping(value = "/account")
-	@Operation(summary = "Account Statment search operation for user with ADMIN role.", responses = {
+	@Operation(summary = "Account Statment search operation for user with ADMIN role only.", responses = {
 			@ApiResponse(description = "Account Statment search operation using account id and specify the date range or amount range. "
 					+ "If the request does not specify any parameter, then the search will return three months back statement.", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = AccountStatementResult.class))),
 			@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content) })
@@ -75,7 +75,7 @@ public class AccountStatementController {
 	}
 
 	@GetMapping(value = "/account/{id}")
-	@Operation(summary = "Account Statment search operation for user with USER role.", responses = {
+	@Operation(summary = "Account Statment search operation for user with ADMIN or USER role.", responses = {
 			@ApiResponse(description = "Account Statment search operation using acount id only for three months back from now.", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = AccountStatementResult.class))),
 			@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content) })
 	public ResponseEntity<?> searchAccountStatement(@PathVariable("id") String accountId) {
