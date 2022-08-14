@@ -1,9 +1,9 @@
 # SpringBoot-Assignment
-This assignment has done using SpringBoot framework
+The assignment project has done using SpringBoot framework
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This assignment API project provide endpoints to load the account statement by account id and perform simple search on date and amount ranges.
+This project provide endpoints to load the account statement by account id and perform simple search on date and amount ranges.
 * The request should specify the account id.
 * The request can specify from date and to date (the date range).
 * The request can specify from amount and to amount (the amount range).
@@ -15,10 +15,11 @@ This assignment API project provide endpoints to load the account statement by a
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Maven](https://maven.apache.org/)
 
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
-## Run from the sources
+### Run from the source
 
 #### Prerequisites
 * Java 11
@@ -40,6 +41,7 @@ mvn clean install spring-boot:run
 We can access the API endpoints on http://localhost:8080
 
 
+
 ## Authentication and Security:
 
 The following endpoints would be available:
@@ -50,6 +52,7 @@ The following endpoints would be available:
 This endpoints require authorization, use the "Basic Auth" and enter credential from the below authenticated users:
 * User1: Username: admin & Password: admin
 * User2: Username: user & Password: user
+
 
 
 ## API Documentation
