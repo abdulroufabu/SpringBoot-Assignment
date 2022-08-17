@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "79956e15-dd50-4997-9db8-83a395ff1780",
-		"name": "Online Account Statement",
+		"_postman_id": "f8ddbe11-b98f-45ab-a07d-ca10571277be",
+		"name": "Online Account Statement Copy",
 		"description": "Endpoints to view account statement.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5701716"
@@ -28,44 +28,28 @@
 								}
 							]
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": 1,\r\n    \"fromDate\": \"2010-08-16\",\r\n    \"toDate\": \"2022-08-16\",\r\n    \"fromAmount\": 200,\r\n    \"toAmount\": 600\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
 							}
-						],
+						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/account?id=3&fromDate=2010-07-01&toDate=2012-07-01&fromAmount=300&toAmount=400",
+							"raw": "http://localhost:8080/api/v1/accounts",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
-								"account"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "3"
-								},
-								{
-									"key": "fromDate",
-									"value": "2010-07-01"
-								},
-								{
-									"key": "toDate",
-									"value": "2012-07-01"
-								},
-								{
-									"key": "fromAmount",
-									"value": "300"
-								},
-								{
-									"key": "toAmount",
-									"value": "400"
-								}
+								"accounts"
 							]
 						}
 					},
@@ -192,212 +176,28 @@
 								}
 							]
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": 3,\r\n    \"fromDate\": \"2010-08-16\",\r\n    \"toDate\": \"2022-08-16\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
 							}
-						],
+						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/account?fromDate=2010-07-01&toDate=2012-07-01&id=5",
+							"raw": "http://localhost:8080/api/v1/accounts",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
-								"account"
-							],
-							"query": [
-								{
-									"key": "fromDate",
-									"value": "2010-07-01"
-								},
-								{
-									"key": "toDate",
-									"value": "2012-07-01"
-								},
-								{
-									"key": "fromAmount",
-									"value": "300",
-									"disabled": true
-								},
-								{
-									"key": "toAmount",
-									"value": "400",
-									"disabled": true
-								},
-								{
-									"key": "id",
-									"value": "5"
-								}
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Account Statment search operation using account id and specify the date range or amount range. If the request does not specify any parameter, then the search will return three months back statement.",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/api/v1/account?id=dolor ut dolore&fromDate=dolor ut dolore&toDate=dolor ut dolore&fromAmount=dolor ut dolore&toAmount=dolor ut dolore",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"account"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "dolor ut dolore"
-										},
-										{
-											"key": "fromDate",
-											"value": "dolor ut dolore"
-										},
-										{
-											"key": "toDate",
-											"value": "dolor ut dolore"
-										},
-										{
-											"key": "fromAmount",
-											"value": "dolor ut dolore"
-										},
-										{
-											"key": "toAmount",
-											"value": "dolor ut dolore"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n  \"errorMessage\": \"aute\",\n  \"accountNumber\": \"fugia\",\n  \"statements\": [\n    {\n      \"accountNumber\": \"proident labore laboris dolor\",\n      \"date\": \"in do\",\n      \"amount\": \"ullamco proident magna dolor irure\"\n    },\n    {\n      \"accountNumber\": \"elit dolor officia id cupidatat\",\n      \"date\": \"laborum dolor non\",\n      \"amount\": \"Ut irure mollit\"\n    }\n  ]\n}"
-						},
-						{
-							"name": "Bad Request",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/api/v1/account?id=dolor ut dolore&fromDate=dolor ut dolore&toDate=dolor ut dolore&fromAmount=dolor ut dolore&toAmount=dolor ut dolore",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"account"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "dolor ut dolore"
-										},
-										{
-											"key": "fromDate",
-											"value": "dolor ut dolore"
-										},
-										{
-											"key": "toDate",
-											"value": "dolor ut dolore"
-										},
-										{
-											"key": "fromAmount",
-											"value": "dolor ut dolore"
-										},
-										{
-											"key": "toAmount",
-											"value": "dolor ut dolore"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "Account Statment  invalid search operation for user with ADMIN role. Copy",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "admin",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "admin",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/account?fromDate=2012-07-01&toDate=2010-07-01&id=4",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"account"
-							],
-							"query": [
-								{
-									"key": "fromDate",
-									"value": "2012-07-01"
-								},
-								{
-									"key": "toDate",
-									"value": "2010-07-01"
-								},
-								{
-									"key": "fromAmount",
-									"value": "300",
-									"disabled": true
-								},
-								{
-									"key": "toAmount",
-									"value": "400",
-									"disabled": true
-								},
-								{
-									"key": "id",
-									"value": "4"
-								}
+								"accounts"
 							]
 						}
 					},
@@ -524,44 +324,33 @@
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": 5,\r\n    \"fromDate\": \"2010-08-16\",\r\n    \"toDate\": \"2022-08-16\",\r\n    \"fromAmount\": 200,\r\n    \"toAmount\": 600\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/account?id=3&fromDate=2010-07-01&toDate=2012-07-01&fromAmount=300&toAmount=400",
+							"raw": "http://localhost:8080/api/v1/accounts",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
-								"account"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "3"
-								},
-								{
-									"key": "fromDate",
-									"value": "2010-07-01"
-								},
-								{
-									"key": "toDate",
-									"value": "2012-07-01"
-								},
-								{
-									"key": "fromAmount",
-									"value": "300"
-								},
-								{
-									"key": "toAmount",
-									"value": "400"
-								}
+								"accounts"
 							]
 						}
 					},
@@ -688,23 +477,33 @@
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/account/1",
+							"raw": "http://localhost:8080/api/v1/accounts",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"v1",
-								"account",
-								"1"
+								"accounts"
 							]
 						}
 					},

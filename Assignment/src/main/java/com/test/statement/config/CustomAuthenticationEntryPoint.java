@@ -1,4 +1,4 @@
-package com.test.statement.security;
+package com.test.statement.config;
 
 import java.io.IOException;
 import java.io.PrintWriter;

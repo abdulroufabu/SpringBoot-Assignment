@@ -1,9 +1,10 @@
 package com.test.statement.exceptions;
 
-public class ResourceNotFoundException extends Exception{
+public class ResourceNotFoundException extends RuntimeException {
 
-	public ResourceNotFoundException(String errorMessage) {
-		super(errorMessage);
-	}
-	
+  private static final long serialVersionUID = 1L;
+
+  public ResourceNotFoundException(String msg) {
+    super(msg);
+  }
 }

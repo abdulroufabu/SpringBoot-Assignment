@@ -4,8 +4,6 @@ import java.util.regex.Pattern;
 
 public class Constant {
 
-    public static final String SUCCESS =
-            "Operation completed successfully";
     public static final String NO_ACCOUNT_FOUND =
             "Unable to find an account matching this account ID";
     public static final String INVALID_ACCOUNT_ID =
