@@ -40,7 +40,7 @@ public class AccountStatementApplicationTest {
 
 	@Test
 	@DisplayName("Test searchStatement with valid request")
-	public void searchStatement_WhenInputRequestIsIsValid_ReturnStatementAsResponse() throws Exception {
+	public void searchStatement_WhenInputRequestIsIsValid() throws Exception {
 		// Given
 		SearchInput searchInput = new SearchInput();
 		searchInput.setAccountId(1l);
@@ -60,8 +60,8 @@ public class AccountStatementApplicationTest {
 	}
 
 	@Test
-	@DisplayName("Test createUser with Invalid request")
-	public void createUser_WhenCreateUserRequestIsInValid_ReturnUserAsResponse() throws Exception {
+	@DisplayName("Test searchStatement with Invalid request")
+	public void searchStatement_WhenInputRequestIsInValid() throws Exception {
 		// Given
 		SearchInput searchInput = new SearchInput();
 		searchInput.setAccountId(1l);
