@@ -19,7 +19,7 @@ This project provide endpoints to load the account statement by account id and p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### Run from the source
+## 1. Run from the sources
 
 #### Prerequisites
 * Java 11
@@ -41,18 +41,38 @@ mvn clean install spring-boot:run
 We can access the API endpoints on http://localhost:8080
 
 
+## 2. Run using Docker
+
+### Prerequisites
+* Docker
+
+We have to install the Docker Community Edition (CE).
+
+The installation instructions can be followed in the [Official Docker documentation](https://docs.docker.com/get-docker/).
+
+### Run Assignment app using docker 
+```
+git clone https://github.com/abdulroufabu/SpringBoot-Assignment.git
+
+cd SpringBoot-Assignment\Assignment
+
+# Package spring boot backend app using maven
+mvn clean package
+
+# Run docker command to build image and run the container for assignment app
+ docker build -t assignment:1
+ docker run -p 8080:8080 assignment:1
+```
 
 ## Authentication and Security:
 
 The following endpoints would be available:
 
-* GET /api/v1/account?id=&fromDate=&toDate=&fromAmount=&toAmount=
-* GET /api/v1/account/{id}
+* POST /api/v1/accounts
 
-This endpoints require authorization, use the "Basic Auth" and enter credential from the below authenticated users:
+This endpoint require authorization, use the "Basic Auth" and enter credential from the below authenticated users:
 * User1: Username: admin & Password: admin
 * User2: Username: user & Password: user
-
 
 
 ## API Documentation
