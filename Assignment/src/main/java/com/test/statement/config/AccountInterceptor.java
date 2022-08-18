@@ -32,12 +32,17 @@ public class AccountInterceptor implements HandlerInterceptor {
 
 		logger.info("Request URL::" + request.getRequestURL().toString() 
 				+ ":: Start Time=" + System.currentTimeMillis());
-
-		if (request.getHeader("Authorization") == null) {
-			response.addHeader("Interceptor", "Authorization not sent!");
-			logger.warn("Authorization not sent.!");
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth == null) {
+			response.addHeader("Interceptor", "Security authentication not exists!");
+			logger.warn("Security authentication not exists.!");
 			return false;
 		}
+		
+		List<Role> roles = auth.getAuthorities().stream()
+				.map(e -> Role.valueOf(e.getAuthority().substring(5)))
+				.collect(Collectors.toList());
 
 		String jsonBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 		logger.info("Interceptor gets body content:" + jsonBody);
@@ -45,11 +50,6 @@ public class AccountInterceptor implements HandlerInterceptor {
 		ObjectMapper mapper = JsonMapper.builder().addModule(new JavaTimeModule()).build();
 		SearchInput inputParam = mapper.readValue(jsonBody, new TypeReference<SearchInput>() {
 		});
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		List<Role> roles = auth.getAuthorities().stream()
-					.map(e -> Role.valueOf(e.getAuthority().substring(5)))
-					.collect(Collectors.toList());
 
 		// Validate the authorization of roles and the request.
 		AuthorizationUtil.validateInputRequest(inputParam, roles);

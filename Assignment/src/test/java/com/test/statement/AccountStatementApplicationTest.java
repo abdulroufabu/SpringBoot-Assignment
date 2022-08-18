@@ -2,7 +2,7 @@ package com.test.statement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -13,8 +13,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -30,8 +31,7 @@ import com.test.statement.controllers.AccountStatementController;
 import com.test.statement.services.AccountStatementService;
 import com.test.statement.utils.SearchInput;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, 
-	classes = AccountStatementController.class)
+@WebMvcTest(AccountStatementController.class)
 @AutoConfigureMockMvc
 public class AccountStatementApplicationTest {
 
@@ -39,7 +39,7 @@ public class AccountStatementApplicationTest {
 
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@MockBean
 	private AccountStatementService stmntService;
 
@@ -52,19 +52,17 @@ public class AccountStatementApplicationTest {
 		searchInput.setFromDate(convertStringToDate("2010-08-16"));
 		searchInput.setToDate(convertStringToDate("2022-08-16"));
 		searchInput.setFromAmount(200.0);
-		searchInput.setFromAmount(600.0);
-
-		RequestBuilder requestBuilder = MockMvcRequestBuilders
-				.post("/api/v1/accounts")
-				.with(httpBasic("admin", "admin"))
-				.with(csrf())
-				.accept(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(searchInput))
-				.contentType(MediaType.APPLICATION_JSON);
+		searchInput.setToAmount(600.0);
 		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/v1/accounts")
+				.with(user("admin").roles("ADMIN"))
+				.with(csrf())
+				.accept(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(searchInput))
+				.contentType(MediaType.APPLICATION_JSON);
+
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-
 		MockHttpServletResponse response = result.getResponse();
-
 		assertEquals(HttpStatus.OK.value(), response.getStatus());
 	}
 
@@ -76,14 +74,18 @@ public class AccountStatementApplicationTest {
 		searchInput.setAccountId(1l);
 		searchInput.setFromDate(convertStringToDate("2012-08-16"));
 		searchInput.setToDate(convertStringToDate("2020-08-16"));
-		searchInput.setFromAmount(200.0);
 		searchInput.setFromAmount(600.0);
+		searchInput.setToAmount(200.0);
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/accounts")
-				.with(httpBasic("admin", "admin"))
+
+		mockMvc.perform(MockMvcRequestBuilders
+				.request(HttpMethod.POST, "/api/v1/accounts")
+				.with(user("admin").roles("ADMIN"))
 				.with(csrf())
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(searchInput)).accept(MediaType.APPLICATION_JSON))
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(objectMapper.writeValueAsString(searchInput))
+				.characterEncoding("utf-8"))
 				.andDo(print()).andExpect(status().isBadRequest());
 	}
 
